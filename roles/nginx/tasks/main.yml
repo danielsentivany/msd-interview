@@ -1,0 +1,8 @@
+---
+- name: Include nginx installation
+  include: install.yml
+  tags: [nginx]
+
+- name: Include nginx configuration
+  include: configure.yml
+  tags: [nginx]

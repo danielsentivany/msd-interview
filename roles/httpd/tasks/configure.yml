@@ -1,0 +1,33 @@
+---
+- name: Rewrite httpd config - /server-status
+  blockinfile:
+    path: /etc/httpd/conf/httpd.conf
+    block: |
+      ExtendedStatus on
+      <Location "/">
+          SetHandler server-status
+          Order deny,allow
+          Deny from all
+          Allow from 127.0.0.1
+      </Location>
+  notify: Restart httpd
+
+- name: Rewrite httpd config - Listen
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: '^Listen 80'
+    line: 'Listen 8080'
+    backrefs: true
+  notify: Restart httpd
+
+- name: Rewrite httpd config - ServerName
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: '^#ServerName www.example.com:80'
+    line: "ServerName {{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}:8080"
+    backrefs: true
+  notify: Restart httpd
+
+- name: Allow network connection
+  command: setsebool -P httpd_can_network_connect 1
+  changed_when: false

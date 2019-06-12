@@ -1,0 +1,6 @@
+[all:vars]
+ansible_connection=ssh
+ansible_user=ec2-user
+
+[msd]
+msd-01    ansible_host=18.206.236.43

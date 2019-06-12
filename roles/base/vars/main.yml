@@ -1,0 +1,9 @@
+---
+yum_packages:
+  - python-devel
+  - python-pip
+  - python-setuptools
+  - vim
+
+pip_packages:
+  - virtualenv

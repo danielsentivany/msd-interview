@@ -1,0 +1,11 @@
+---
+channels:
+  - conda-forge
+
+dependencies:
+  - ansible
+  - awscli
+  - pip
+  - pip:
+      - ansible-lint
+      - yamllint

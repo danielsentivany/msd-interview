@@ -1,0 +1,9 @@
+---
+- name: Enable EPEL repo
+  yum:
+    name: "{{ epel_repo }}"
+
+- name: Install nginx
+  yum:
+    name: nginx
+  notify: Restart nginx

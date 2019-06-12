@@ -1,0 +1,12 @@
+---
+- name: Install required yum packages
+  yum:
+    name: "{{ yum_packages }}"
+
+- name: Install pip packages
+  pip:
+    name: "{{ pip_packages }}"
+
+- name: Reload daemon
+  systemd:
+    daemon_reload: true

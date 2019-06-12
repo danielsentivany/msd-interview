@@ -1,0 +1,8 @@
+---
+- name: Include apache installation
+  include: install.yml
+  tags: [apache, httpd]
+
+- name: Include apache configuration
+  include: configure.yml
+  tags: [apache, httpd]
